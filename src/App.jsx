@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
@@ -7,6 +9,9 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
+    <>
+    <Navbar />
+    <main>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop />} />
@@ -14,6 +19,9 @@ function App() {
       <Route path="/cart" element={<Cart />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </main>
+    <Footer />
+    </>
   );
 }
 
