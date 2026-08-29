@@ -20,7 +20,7 @@ function cartReducer(state, action) {
         };
       }
 
-      // not in cart yet — add it with quantity 1
+      
       return {
         ...state,
         items: [...state.items, { ...product, quantity: 1 }],
