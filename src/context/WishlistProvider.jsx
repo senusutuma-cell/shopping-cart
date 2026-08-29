@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from "react";
-import { WishlistContext } from "./wishlistContext";
+import { WishlistContext } from "./WishlistContext";
 import wishlistReducer, { initialWishlistState } from "./wishlistReducer";
 
 const STORAGE_KEY = "wishlist-items";
@@ -21,5 +21,5 @@ export function WishlistProvider({ children }) {
 
   const value = { items: state.items, dispatch };
 
-  return <WishlistContext.Provider value={value}>{children}</WishlistContext.Provider>;
+  return <WishlistContext.Provider value={value}>{children}./WishlistContext.Provider>;
 }
