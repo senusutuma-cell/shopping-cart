@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useProduct } from "../hooks/useProduct";
 import { useCart } from "../hooks/useCart";
+import { useToast } from "../hooks/useToast";
 import RelatedProducts from "../components/product/RelatedProducts";
 
 function ProductDetail() {
   const { id } = useParams();
   const { product, loading, error } = useProduct(id);
   const { dispatch } = useCart();
+  const { addToast } = useToast();
 
   if (loading) return <p>Loading product...</p>;
   if (error) return <p>Something went wrong: {error}</p>;
@@ -14,6 +16,7 @@ function ProductDetail() {
 
   function handleAddToCart() {
     dispatch({ type: "ADD_ITEM", payload: product });
+    addToast(`Added "${product.title}" to cart`);
   }
   return (
     <div style={{ padding: "1rem" }}>

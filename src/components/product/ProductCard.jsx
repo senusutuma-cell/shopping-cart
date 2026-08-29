@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
+import { useToast } from "../../hooks/useToast";
 
 function ProductCard({ product }) {
   const { dispatch } = useCart();
+  const { addToast } = useToast();
 
   function handleAddToCart(e) {
     e.preventDefault(); 
     dispatch({ type: "ADD_ITEM", payload: product });
+    addToast(`Added "${product.title}" to cart`);
   }
 
   return (
