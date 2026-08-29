@@ -4,7 +4,7 @@ export function useProducts(category) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [retryCount, setRetryCount] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
 
@@ -38,7 +38,9 @@ export function useProducts(category) {
     fetchProducts();
 
     return () => controller.abort();
-  }, [category]);
-
-  return { products, loading, error };
+  }, [category, retryCount]);
+   function refetch() {
+    setRetryCount((count) => count + 1);
+  }
+  return { products, loading, error, refetch };
 }

@@ -1,22 +1,44 @@
 import { useProducts } from "../hooks/useProducts";
 import { useCategories } from "../hooks/useCategories";
+import ProductGrid from "../components/product/ProductGrid";
+import SkeletonCard from "../components/product/SkeletonCard";
+
 function Shop() {
-  const { products, loading, error } = useProducts();
+  const { products, loading, error, refetch } = useProducts();
   const { categories } = useCategories();
 
-  if (loading) return <p>Loading products...</p>;
-  if (error) return <p>Error: {error}</p>;
-
   return (
-    <div>
-      <h1>Shop Page</h1>
-      <p>Categories: {categories.join(", ")}</p>
-      <p>Product count: {products.length}</p>
-      <ul>
-        {products.slice(0, 3).map((p) => (
-          <li key={p.id}>{p.title}</li>
-        ))}
-      </ul>
+    <div style={{ padding: "1rem" }}>
+      <h1>Shop</h1>
+      <p>Categories available: {categories.join(", ")}</p>
+
+      {loading && (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            gap: "1rem",
+          }}
+        >
+          {Array.from({ length: 8 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
+      )}
+
+      {error && !loading && (
+        <div>
+          <p>Something went wrong: {error}</p>
+          <button onClick={refetch}>Retry</button>
+        </div>
+      )}
+
+      {!loading && !error && (
+        <>
+          <p>{products.length} products found</p>
+          <ProductGrid products={products} />
+        </>
+      )}
     </div>
   );
 }
