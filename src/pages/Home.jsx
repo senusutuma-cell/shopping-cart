@@ -1,6 +1,8 @@
 import HeroBanner from "../components/home/HeroBanner";
 import CategoryGrid from "../components/home/CategoryGrid";
 import FeaturedProducts from "../components/home/FeaturedProducts";
+import RecentlyViewed from "../components/product/RecentlyViewed";
+
 
 function Home() {
    
@@ -8,7 +10,8 @@ function Home() {
     <div>
      <HeroBanner />
       <CategoryGrid />
-      <FeaturedProducts /> 
+      <FeaturedProducts />
+      <RecentlyViewed /> 
     </div>
   ) ;}
 

@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { useProduct } from "../hooks/useProduct";
 import { useCart } from "../hooks/useCart";
 import { useToast } from "../hooks/useToast";
+import { useRecentlyViewed } from "../hooks/useRecentlyViewed";
 import RelatedProducts from "../components/product/RelatedProducts";
 
 function ProductDetail() {
@@ -9,6 +11,13 @@ function ProductDetail() {
   const { product, loading, error } = useProduct(id);
   const { dispatch } = useCart();
   const { addToast } = useToast();
+  const { trackView } = useRecentlyViewed();
+
+  useEffect(() => {
+    if (product) {
+      trackView(product.id);
+    }
+  }, [product, trackView]);
 
   if (loading) return <p>Loading product...</p>;
   if (error) return <p>Something went wrong: {error}</p>;
