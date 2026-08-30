@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 import CartItem from "../components/cart/CartItem";
 import OrderSummary from "../components/cart/OrderSummary";
@@ -28,9 +29,12 @@ function Cart() {
         </button>
       </div>
 
-      <div style={{ flex: 1, minWidth: "250px" }}>
-        <OrderSummary items={items} />
-      </div>
+      <div style={{ flex: 1, minWidth: "260px" }}>
++          <OrderSummary items={items} />
++          <Link to="/checkout" className="btn btn--primary btn--full" style={{ marginTop: "1rem" }}>
++            Wrap It Up
++          </Link>
++        </div>
     </div>
   );
 }
