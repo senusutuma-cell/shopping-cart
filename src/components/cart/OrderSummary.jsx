@@ -7,12 +7,12 @@ function OrderSummary({ items }) {
   const total = subtotal + tax;
 
   return (
-    <div style={{ border: "1px solid #ddd", borderRadius: "8px", padding: "1rem", maxWidth: "300px" }}>
-      <h2>Order Summary</h2>
-      <p>Items: {itemCount}</p>
-      <p>Subtotal: ${subtotal.toFixed(2)}</p>
-      <p>Tax (15%): ${tax.toFixed(2)}</p>
-      <h3>Total: ${total.toFixed(2)}</h3>
+     <div className="receipt">
+      <h2 className="receipt__title">Order Summary</h2>
+      <div className="receipt__row"><span>Items</span><span>{itemCount}</span></div>
+      <div className="receipt__row"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
+      <div className="receipt__row"><span>Tax (15%)</span><span>${tax.toFixed(2)}</span></div>
+      <div className="receipt__total"><span>Total</span><span>${total.toFixed(2)}</span></div>
     </div>
   );
 }

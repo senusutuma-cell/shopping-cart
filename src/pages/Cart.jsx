@@ -30,11 +30,13 @@ function Cart() {
       </div>
 
       <div style={{ flex: 1, minWidth: "260px" }}>
-+          <OrderSummary items={items} />
-+          <Link to="/checkout" className="btn btn--primary btn--full" style={{ marginTop: "1rem" }}>
-+            Wrap It Up
-+          </Link>
-+        </div>
+          <div className="cart-summary-col">
+         <OrderSummary items={items} />
+          <Link to="/checkout" className="btn btn--primary btn--full">
+            Wrap It Up
+          </Link>
+        </div>
+        </div>
     </div>
   );
 }

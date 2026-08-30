@@ -16,23 +16,23 @@ function CartItem({ item }) {
   }
 
   return (
-    <div style={{ display: "flex", gap: "1rem", alignItems: "center", borderBottom: "1px solid #eee", padding: "1rem 0" }}>
-      <img src={item.image} alt={item.title} style={{ width: "60px", height: "60px", objectFit: "contain" }} />
+    <div className="cart-item">
+    <img src={item.image} alt={item.title} className="cart-item__image" />
 
-      <div style={{ flex: 1 }}>
-        <p>{item.title}</p>
+      <div className="cart-item__info">
+       <p className="cart-item__title">{item.title}</p>
         <p>${item.price.toFixed(2)}</p>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-        <button onClick={decrement}>−</button>
-        <span>{item.quantity}</span>
-        <button onClick={increment}>+</button>
+      <div className="cart-item__meta">
+        <div className="cart-item__stepper">
+          <button className="stepper-btn" onClick={decrement}>−</button>
+          <span>{item.quantity}</span>
+          <button className="stepper-btn" onClick={increment}>+</button>
+        </div>
+        <p className="cart-item__line-total">${(item.price * item.quantity).toFixed(2)}</p>
+        <button className="cart-item__remove" onClick={remove}>Remove</button>
       </div>
-
-      <p>${(item.price * item.quantity).toFixed(2)}</p>
-
-      <button onClick={remove}>Remove</button>
     </div>
   );
 }

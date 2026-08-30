@@ -551,17 +551,26 @@ button {
 /* ---------- Cart ---------- */
 
 .cart-layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   gap: 2.5rem;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cart-list {
-  flex: 2;
-  min-width: 300px;
+  min-width: 0;
 }
-
+.cart-summary-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 .cart-item {
   display: flex;
   align-items: center;
@@ -578,10 +587,11 @@ button {
   border-radius: var(--radius-sm);
   background: var(--color-bg);
   padding: 0.4rem;
+  flex-shrink: 0;
 }
 
 .cart-item__info {
-  flex: 1;
+  flex: 1 1 180px;
   min-width: 0;
 }
 
@@ -595,6 +605,14 @@ button {
   font-size: 0.92rem;
 }
 
+.cart-item__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
 .cart-item__stepper {
   display: flex;
   align-items: center;
@@ -602,6 +620,7 @@ button {
   background: var(--color-bg);
   border-radius: 999px;
   padding: 0.3rem 0.6rem;
+  flex-shrink: 0;
 }
 
 .stepper-btn {
@@ -621,6 +640,7 @@ button {
   color: var(--color-mint);
   min-width: 70px;
   text-align: right;
+  flex-shrink: 0;
 }
 
 .cart-item__remove {
@@ -629,49 +649,19 @@ button {
   color: var(--color-ink-soft);
   font-size: 0.8rem;
   text-decoration: underline;
-}
-
-@media (max-width: 640px) {
-  .cart-item {
-    position: relative;
-    padding-bottom: 1.25rem;
-  }
-
-  .cart-item__info {
-    flex: 1 1 100%;
-    order: 1;
-  }
-
-  .cart-item__image {
-    order: 0;
-  }
-
-  .cart-item__stepper {
-    order: 2;
-  }
-
-  .cart-item__line-total {
-    order: 3;
-    min-width: auto;
-  }
-
-  .cart-item__remove {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
+  flex-shrink: 0;
 }
 
 .empty-cart {
   text-align: center;
   padding: 4rem 1.5rem;
 }
-
 /* ---------- Receipt (signature element) ---------- */
 
 .receipt {
   flex: 1;
-  min-width: 260px;
+  min-width: 0;
+  flex-basis: 260px;
   background: var(--color-surface);
   border: 1.5px dashed var(--color-line);
   border-radius: var(--radius-md);
