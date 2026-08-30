@@ -3,6 +3,12 @@ import { useCategories } from "../../hooks/useCategories";
 
 function CategoryGrid() {
   const { categories, loading, error } = useCategories();
+  const categoryIcons = {
+     electronics: "⚡",
+     jewelery: "💎",
+     "men's clothing": "👕",
+     "women's clothing": "👗",
+   };
 
   if (loading) return <p>Loading categories...</p>;
   if (error) return null; // non-critical section, fail quietly on the home page
@@ -11,7 +17,9 @@ function CategoryGrid() {
     <section style={{ padding: "2rem" }}>
       <h2>Shop by Category</h2>
       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-        {categories.map((category) => (
+       {categories.map((category) => {
+           const icon = categoryIcons[category.toLowerCase()] || "📦";
+           return (
           <Link
             key={category}
             to={`/shop?category=${encodeURIComponent(category)}`}
@@ -22,9 +30,10 @@ function CategoryGrid() {
               textTransform: "capitalize",
             }}
           >
-            {category}
+            {icon} {category}
           </Link>
-        ))}
+        );
+})}
       </div>
     </section>
   );
