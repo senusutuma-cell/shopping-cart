@@ -6,7 +6,7 @@ function Navbar() {
   const itemCount = items.reduce((total, item) => total + item.quantity, 0);
   return (
     <nav style={{ display: "flex", justifyContent: "space-between", padding: "1rem" }}>
-      <NavLink to="/">🛍️ ShopCart</NavLink>
+     <NavLink to="/">🛍️ ShopCart</NavLink>
 
       <div style={{ display: "flex", gap: "1rem" }}>
         <NavLink to="/">Home</NavLink>

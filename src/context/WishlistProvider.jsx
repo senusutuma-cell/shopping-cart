@@ -21,5 +21,5 @@ export function WishlistProvider({ children }) {
 
   const value = { items: state.items, dispatch };
 
-  return <WishlistContext.Provider value={value}>{children}./WishlistContext.Provider>;
+    return <WishlistContext.Provider value={value}>{children}</WishlistContext.Provider>;
 }
