@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams ,useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useProduct } from "../hooks/useProduct";
 import { useCart } from "../hooks/useCart";
@@ -8,6 +8,7 @@ import RelatedProducts from "../components/product/RelatedProducts";
 
 function ProductDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { product, loading, error } = useProduct(id);
   const { dispatch } = useCart();
   const { addToast } = useToast();
@@ -29,6 +30,13 @@ function ProductDetail() {
   }
   return (
     <div style={{ padding: "1rem" }}>
+       <button 
+         onClick={() => navigate(-1)} 
+         style={{ marginBottom: "1rem", cursor: "pointer" }}
+       >
+         ⬅️ Back
+       </button>
+    
       <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
         <img
           src={product.image}
